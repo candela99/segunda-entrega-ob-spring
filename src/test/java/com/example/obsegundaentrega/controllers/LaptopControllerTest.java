@@ -94,6 +94,7 @@ class LaptopControllerTest {
         assertEquals("Laptop modificada desde Spring Test", result.getModelo());
     }
 
+    @Test
     void delete() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -114,6 +115,14 @@ class LaptopControllerTest {
 
     @Test
     void deleteAll() {
-        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        ResponseEntity<Laptop> response = testRestTemplate.exchange("/api/laptops/", HttpMethod.DELETE, request, Laptop.class);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 }
