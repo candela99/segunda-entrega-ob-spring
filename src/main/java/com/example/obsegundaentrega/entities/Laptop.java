@@ -1,6 +1,7 @@
 package com.example.obsegundaentrega.entities;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "laptops")
