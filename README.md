@@ -1,5 +1,4 @@
 # Open Bootcamp - Entrega
-------------
 
 ### Ejercicio 1
 
