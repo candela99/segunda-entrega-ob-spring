@@ -71,6 +71,25 @@ class LaptopControllerTest {
 
     @Test
     void update() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+
+        String json = """
+                    {
+                         "id": 1,
+                         "marca": "HP",
+                         "modelo": "Laptop modificada desde Spring Test"
+                    }
+                """;
+
+        HttpEntity<String> request = new HttpEntity<>(json, headers);
+        ResponseEntity<Laptop> response = testRestTemplate.exchange("/api/laptops", HttpMethod.PUT, request, Laptop.class);
+
+        Laptop result = response.getBody();
+
+        assertEquals("HP", result.getMarca());
+        assertEquals("Laptop modificada desde Spring Test", result.getModelo());
     }
 
     @Test
